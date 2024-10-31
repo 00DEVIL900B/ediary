@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}eDiary - Search{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1>Showing results for: {{query}}</h1>
+
+    <!-- Display user's diaries -->
+    <div id="diary-list">
+        
+        {% if memo|length == 0 %}
+        No results for: {{query}}.
+        <br>
+        Make sure you have typed correct keywords.
+        {% else %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Title</th>
+                    <th scope="col">Created At</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for d in memo %}
+                <tr>
+                    <td><a href="/diary/view/{{d.id}}">{{ d.title }}</a></td>
+                    <td>{{ d.created_at }}</td>
+                    <td>
+                        <form method="POST" action="/diary/delete_diary/">{% csrf_token %}
+                            <input type="hidden" name="diaryId" value={{ d.id }} />
+                            <button type="submit" class="btn btn-sm btn-outline-danger">Delete Diary</button>
+                        </form>
+                    </td>
+                    <td>
+                        <a href="/diary/edit_diary?diaryId={{ d.id }}" class="btn btn-sm btn-outline-primary">Edit Diary</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <!-- Create new diary button -->
+        {% endif %}
+    </div>
+</div>
+{% endblock body %}

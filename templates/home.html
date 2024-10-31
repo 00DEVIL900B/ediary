@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}eDiary - Your Personal Digital Haven{% endblock title %}
+{% block body %}
+<div class="container mt-4">
+
+    {% if user.is_authenticated %}
+    {% else %}
+    <div class="text-center">
+        <p class="h4">Please Login to Access This Service!</p>
+    </div>
+    {% endif %}
+
+    <h2>Welcome to eDiary - Your Personal Digital Haven</h2>
+    <p>
+        Unlock the power of self-reflection, creativity, and organization with eDiary. Embrace the beauty of documenting your thoughts, experiences, and aspirations in a secure and intuitive online diary.
+    </p>
+    <h2>Why Choose eDiary?</h2>
+    <p>
+        <strong>📖 Seamless Journaling:</strong> Immerse yourself in a fluid and effortless journaling experience. Write, edit, and organize your entries with ease, whether you're capturing life's memorable moments or reflecting on your personal journey.
+    </p>
+    <p>
+        <strong>🔐 Privacy First:</strong> Your thoughts are precious, and we understand the importance of keeping them safe. eDiary prioritizes your privacy, offering state-of-the-art security features to ensure that your digital diary is for your eyes only.
+    </p>
+    <p>        
+        <strong>✨ Customization:</strong> Personalize your digital diary to match your unique style. Choose from a variety of themes, fonts, and layouts to create an environment that resonates with your individuality.
+    </p>
+    <p>        
+        <strong>🌐 Access Anywhere:</strong> Your diary is not confined to a physical notebook. Access your entries anytime, anywhere, and on any device. Whether you're at home, on the go, or traveling the world, your digital diary is always within reach.
+    </p>
+    <p>        
+        <strong>📅 Organize and Reflect:</strong> Effortlessly organize your entries by date, tags, or themes. eDiary makes it easy to reflect on your past, track your personal growth, and gain valuable insights into your life journey.
+    </p>
+    <h2>Start Your Journey Today</h2>
+    <p>
+        Join thousands of individuals who have embraced the power of digital journaling with eDiary. Begin your journey towards self-discovery, mindfulness, and creativity.
+    </p>
+    <h2>Register now and start penning your digital story!</h2>
+    <p><i>Your life, your story, your eDiary.</i></p>
+</div>
+{% endblock body %}

@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}Create new Memory - eDiary{% endblock title %}
+{% block hscript %}<script src="https://cdn.tiny.cloud/1/kfh8i2cbt2u08u0a3lngpevaenfgu4lvqlkglzjffvrinixz/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+{% endblock hscript %}
+
+
+{% block body %}
+<div class="container">
+    <h1>Add a memory</h1>
+    <form id="my-form" action="/diary/add/" method="post">{% csrf_token %}
+        <input type="text" placeholder="Enter Title for Your Memory" id="title" name="title" class="col-10 mb-2 p-2 rounded border-none">
+        <input type="hidden" name="content" id="content">
+        <textarea id="mytextarea" style="height:80vh;"></textarea>
+        <button class="btn btn-primary my-2" onclick="saveContent()">Save</button>
+    </form>
+{% endblock body %}
+
+
+{% block script %}
+function saveContent(){
+    var content = tinymce.get('mytextarea').getContent();
+    document.getElementById("content").value=content;
+    document.getElementById("my-form").submit();
+}
+
+
+tinymce.init({
+    selector: 'textarea',
+    content_css: 'dark',
+    plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
+    toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | align lineheight | tinycomments | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+    tinycomments_mode: 'embedded',
+    tinycomments_author: 'Author name',
+    mergetags_list: [
+      { value: 'First.Name', title: 'First Name' },
+      { value: 'Email', title: 'Email' },
+    ],
+    ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
+  });
+{% endblock script %}

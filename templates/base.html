@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% block hscript %}{% endblock hscript %}
+    <title>{% block title %}{% endblock title %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>{% block style %}{% endblock style %}</style>
+  </head>
+  <body data-bs-theme="dark">
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Change Password</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="/changePassword/" id="changePass" method="post">{% csrf_token %}
+          <div class="form-floating">
+            <input type="password" class="form-control" name="old-password" id="floatingPasswordold" placeholder="Password">
+            <label for="floatingPasswordold">Old Password</label>
+          </div>
+          <div class="form-floating">
+            <input type="password" class="form-control" name="new-password" id="new-password" placeholder="Password">
+            <label for="new-password">New Password</label>
+          </div>
+          <div class="form-floating">
+            <input type="password" class="form-control" name="confirm-password" id="confirm-pass" placeholder="Password">
+            <label for="confirm-pass">New Password</label>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" onclick="changePass()" class="btn btn-primary">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <!--Navbar-->
+    <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/">eDiary</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/diary/"><i class="bi bi-house"></i> Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="/help/"><i class="bi bi-question-circle"></i> Help</a>
+              </li>
+              {% comment %} <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Dropdown
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+              </li>
+              {% endcomment %}
+            </ul> 
+            {% if user.is_authenticated %}
+            <form class="d-flex" action="/diary/search/" method="get" role="search">
+              <input class="form-control me-2" type="search" placeholder="Search" name="q" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+            <ul class="navbar-nav mx-md-2">
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Welcome <strong>{{request.user}}</strong>
+                </a>
+                <ul class="dropdown-menu overflow-x-hidden">
+                  <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Change Password</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="/logout/">Logout</a></li>
+                </ul>
+              </li>
+            </ul>
+            {% else %}
+            <ul class="navbar-nav mx-md-2">
+              <li class="nav-item">
+                <a class="btn btn-primary" href="/login/">Login / Register</a><span class="px-3"></span>
+              </li>
+            </ul>
+            {% endif %}
+          </div>
+        </div>
+      </nav>
+      <!--Alert-->
+      {% if messages %}
+      {% for message in messages %}
+      <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+        <strong>Message:</strong> {{message}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      {% endfor %}
+      {% endif %}
+      
+      <!--Main layout-->
+    {% block body %}{% endblock body %}
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+
+<script>  
+  function changePass(){
+    document.getElementById("changePass").submit();
+  }
+  {% block script %}{% endblock script %}
+</script>
+  </body>
+</html>

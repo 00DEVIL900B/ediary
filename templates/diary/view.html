@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}View - {{memo.title}}{% endblock title %}
+
+{% block body %}
+<div class="container">
+    <h1>{{ memo.title }}</h1>
+    <p><small>Created: {{ memo.created_at|date:"F jS, Y H:i" }}, Last modified: {{ memo.modified_at|date:"F jS, Y H:i"}}</small></p>
+    <hr />
+    <div class="content">
+        {{ memo.content | safe }}
+    </div>
+    <button class="btn mt-3 btn-secondary"><a class="link-light link-underline link-underline-opacity-0 bold" href="/diary/edit_diary/?diaryId={{memo.id}}"><i class="bi bi-pencil-square"></i> Edit</a></button>
+</div>
+{% endblock body %}

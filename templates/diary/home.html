@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% block title %}eDiary - Welcome {{request.user}}{% endblock %}
+
+{% block body %}
+<div class="container">
+
+
+
+
+  
+
+
+    <h1>Welcome to eDiary, {{ request.user }}!</h1>
+
+    <!-- Display user's diaries -->
+    <div id="diary-list">
+        
+        {% if diaries|length == 0 %}
+        You haven't created any diaries yet. Click the button below to create one now.
+        {% else %}
+        <p>
+            <a href="/diary/create/" class="btn btn-lg btn-success" role="button">Create a New Diary</a>
+        </p>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Title</th>
+                    <th scope="col">Created At</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for d in diaries %}
+                <tr>
+                    <td><a href="/diary/view/{{d.id}}">{{ d.title }}</a></td>
+                    <td>{{ d.created_at }}</td>
+                    <td>
+                        <button type="submit" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal{{d.id}}">Delete Diary</button>
+                    </td>
+                    <td>
+                        <a href="/diary/edit_diary?diaryId={{ d.id }}" class="btn btn-sm btn-outline-primary">Edit Diary</a>
+                    </td>
+                </tr>
+                <!--Modal-->
+                <div class="modal fade" id="exampleModal{{d.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h1 class="modal-title fs-5" id="exampleModalLabel">Are you Sure?</h1>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          Are you sure you want to this diary: {{d.title}}
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Close</button>
+                          <form method="POST" action="/diary/delete_diary/">{% csrf_token %}
+                            <input type="hidden" name="diaryId" value={{ d.id }} />
+                            <button type="submit" class="btn btn-sm btn-outline-danger">Delete Diary</button>
+                        </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>        
+                  <!--Modal end-->        
+                {% endfor %}
+            </tbody>
+        </table>
+        <!-- Create new diary button -->
+        {% endif %}
+        <p>
+            <a href="/diary/create/" class="btn btn-lg btn-success" role="button">Create a New Diary</a>
+        </p>
+    </div>
+</div>
+{% endblock body %}
