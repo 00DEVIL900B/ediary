@@ -1,5 +1,5 @@
 {
-  "builds": [{
+  "vercel builds": [{
       "src": "ediary/wsgi.py",
       "use": "@vercel/python",
       "config": { "maxLambdaSize": "50mb" }
