@@ -1,15 +1,13 @@
 {
-  "functions": {
-    "ediary/wsgi.py": {
-      "runtime": "vercel-python@0.5.1",
-      "maxDuration": 10,
-      "memory": 512
-    }
-  },
+  "builds": [{
+      "src": "ediary/wsgi.py",
+      "use": "@vercel/python",
+      "config": { "maxLambdaSize": "50mb" }
+  }],
   "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "ediary/wsgi.py"
-    }
+      {
+          "src": "/(.*)",
+          "dest": "ediary/wsgi.py"
+      }
   ]
 }
