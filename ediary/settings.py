@@ -72,7 +72,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'ediary.wsgi.app'
+WSGI_APPLICATION = 'ediary.wsgi.application'
 
 
 # Database
