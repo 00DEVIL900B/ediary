@@ -2,7 +2,7 @@
     "builds": [{
         "src": "ediary/wsgi.py",
         "use": "@vercel/python",
-        "config": { "maxLambdaSize": "15mb", "runtime": "Python3.9" }
+        "config": { "maxLambdaSize": "15mb" }
     },
     {
         "src": "build_files.sh",
