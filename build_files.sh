@@ -1,4 +1,8 @@
 #!/bin/bash
-python 3.9 manage.py migrate
-python 3.9 manage.py collectstatic --noinput
-python 3.9 manage.py runserver 0.0.0.0:$PORT
+echo "Building..."
+python3 -m pip install -r requirements.txt
+echo "Migrating..."
+python3 manage.py makemigrations --noinput
+python3 manage.py migrate --noinput
+echo "Collecting..."
+python3 manage.py collectstatic --noinput
