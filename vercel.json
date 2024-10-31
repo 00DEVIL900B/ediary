@@ -1,7 +1,7 @@
 {
   "functions": {
     "ediary/wsgi.py": {
-      "runtime": "python3.10",
+      "runtime": "vercel-python@0.5.1",
       "maxDuration": 10,
       "memory": 512
     }
