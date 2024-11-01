@@ -2,24 +2,15 @@
     "builds": [{
         "src": "ediary/wsgi.py",
         "use": "@vercel/python",
-        "config": { "maxLambdaSize": "15mb" }
-    },
-    {
-        "src": "build_files.sh",
-        "use": "@vercel/staticfiles_build",
         "config": {
-            "distDir": "staticfiles_build"
+            "maxLambadaSize": "15mb",
+            "runtime": "python3.9"
         }
-    }
-    ],
+    }],
     "routes": [
-        {
-            "src": "/static/(.*)",
-            "dest": "/static/$1"
-        },
         {
             "src": "/(.*)",
             "dest": "ediary/wsgi.py"
-        },
+        }
     ]
 }
