@@ -78,16 +78,16 @@ WSGI_APPLICATION = 'ediary.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.postgresql',
- #       'NAME': 'ediary',
-  #      'USER': 'vadij73694',
-   #     'PASSWORD': 't6malQJ8Hkyw',
-    #    'HOST': 'ep-royal-water-a5q7eal3.us-east-2.aws.neon.tech',
-     #   'PORT': '5432',
-    #}
-#}
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'ediary',
+        'USER': 'vadij73694',
+        'PASSWORD': 't6malQJ8Hkyw',
+        'HOST': 'ep-royal-water-a5q7eal3.us-east-2.aws.neon.tech',
+        'PORT': '5432',
+    }
+}
 
 
 # Password validation
