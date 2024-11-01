@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-1zr_ht4ano#b)sajzs)##$2&ba68w76=3$fv7n=(_dh6j08*w$
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '192.168.12.135', 'now.sh', 'ep-royal-water-a5q7eal3.us-east-2.aws.neon.tech', '.vercel.app']
+ALLOWED_HOSTS = ['now.sh', 'ep-royal-water-a5q7eal3.us-east-2.aws.neon.tech', '.vercel.app']
 
 
 # Application definition
@@ -78,16 +78,16 @@ WSGI_APPLICATION = 'ediary.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'ediary',
-        'USER': 'vadij73694',
-        'PASSWORD': 't6malQJ8Hkyw',
-        'HOST': 'ep-royal-water-a5q7eal3.us-east-2.aws.neon.tech',
-        'PORT': '5432',
-    }
-}
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.postgresql',
+ #       'NAME': 'ediary',
+  #      'USER': 'vadij73694',
+   #     'PASSWORD': 't6malQJ8Hkyw',
+    #    'HOST': 'ep-royal-water-a5q7eal3.us-east-2.aws.neon.tech',
+     #   'PORT': '5432',
+    #}
+#}
 
 
 # Password validation
