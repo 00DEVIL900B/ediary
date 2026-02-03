@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-1zr_ht4ano#b)sajzs)##$2&ba68w76=3$fv7n=(_dh6j08*w$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['now.sh', 'ep-royal-water-a5q7eal3.us-east-2.aws.neon.tech', '.vercel.app']
 
